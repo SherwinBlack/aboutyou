@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Valentine's Day Invitation 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 50%, #ffa3d1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cat-walker {
+            position: absolute;
+            font-size: 40px;
+            animation: walk 15s linear infinite;
+        }
+
+        @keyframes walk {
+            0% { left: -60px; }
+            100% { left: 110%; }
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+            text-align: center;
+            max-width: 500px;
+            min-height: 600px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .cat-meme {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            max-width: 100%;
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #ff1493;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: 30px;
+            flex-wrap: wrap;
+            min-height: 80px;
+            align-items: center;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #ddd, #bbb);
+            color: #666;
+            position: relative;
+        }
+
+        .hearts {
+            position: fixed;
+            font-size: 30px;
+            animation: float 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-hint {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: rgba(255, 105, 180, 0.95);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            z-index: 1000;
+            animation: bounce 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .music-hint.hidden {
+            display: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .lyrics-overlay {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            max-width: 80%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .lyrics-overlay.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .lyrics-overlay {
+                top: 10px;
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
+            .container {
+                max-width: 90%;
+                padding: 30px 20px;
+                min-height: 500px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .cat-meme {
+                width: 150px;
+                height: 150px;
+                max-width: 80%;
+            }
+
+            .question {
+                font-size: 1.3em;
+                margin: 20px 0;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .cat-walker {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                min-height: 450px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+
+            .cat-meme {
+                width: 120px;
+                height: 120px;
+                margin: 15px auto;
+                max-width: 70%;
+            }
+
+            .question {
+                font-size: 1.1em;
+                margin: 15px 0;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .buttons {
+                gap: 15px;
+                padding-top: 20px;
+            }
+
+            .cat-walker {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lyrics-overlay" id="lyricsOverlay"></div>
+    <div class="music-hint" id="musicHint">🎵 Play the music! 🎵</div>
+    <button class="music-control" id="musicControl">🎵</button>
+
+    <audio id="backgroundMusic" loop>
+        <source src="Guilty as sin x About you (Taylor Swift x The 1975) Full Version.mp3" type="audio/mpeg">
+    </audio>
+    <div class="cat-walker" style="top: 10%; animation-delay: 0s;">🐱</div>
+    <div class="cat-walker" style="top: 80%; animation-delay: 5s;">😺</div>
+    <div class="cat-walker" style="top: 40%; animation-delay: 10s;">😻</div>
+    <div class="cat-walker" style="top: 25%; animation-delay: 3s;">🌹</div>
+    <div class="cat-walker" style="top: 60%; animation-delay: 7s;">💐</div>
+    <div class="cat-walker" style="top: 90%; animation-delay: 12s;">🌺</div>
+    <div class="cat-walker" style="top: 15%; animation-delay: 2s;">💕</div>
+    <div class="cat-walker" style="top: 50%; animation-delay: 8s;">💖</div>
+    <div class="cat-walker" style="top: 70%; animation-delay: 14s;">💝</div>
+    <div class="cat-walker" style="top: 35%; animation-delay: 4s;">🐈</div>
+    <div class="cat-walker" style="top: 55%; animation-delay: 11s;">🌸</div>
+    <div class="cat-walker" style="top: 20%; animation-delay: 6s;">💗</div>
+
+    <div class="container">
+        <div class="content-area">
+            <h1>💕 Hey Beautiful! 💕</h1>
+            
+            <img class="cat-meme" id="catMeme" src="https://cdn.discordapp.com/attachments/1355483951313190984/1464954004734742569/yourmyfavorite.jpg?ex=6987d2fc&is=6986817c&hm=8a3b50fcdb9bbf11810e3d2b9ba34f4e86413c5edc51695ebf6ac08b2f3fa4e4&" alt="Cute cat">
+            
+            <div class="question" id="question">Will you be my Valentine? 🌹</div>
+        </div>
+        
+        <div class="buttons">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const question = document.getElementById('question');
+        const catMeme = document.getElementById('catMeme');
+        const musicControl = document.getElementById('musicControl');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const lyricsOverlay = document.getElementById('lyricsOverlay');
+        const musicHint = document.getElementById('musicHint');
+        
+        let yesClickCount = 0;
+        let yesBtnScale = 1;
+        let isPlaying = false;
+
+        // Music control
+        musicControl.addEventListener('click', function() {
+            // Hide the hint after first click
+            musicHint.classList.add('hidden');
+            
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicControl.textContent = '🎵';
+                lyricsOverlay.classList.remove('show');
+            } else {
+                backgroundMusic.play();
+                musicControl.textContent = '🔊';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Romantic messages that display while music plays
+        const romanticMessages = [
+            "💕 You're my favorite person 💕",
+            "✨ My Bunging ✨",
+            "💖 You make my heart skips a beat 💖",
+            "🌹 Thinking of you always 🌹",
+            "💝 You're my everything 💝",
+            "😻 mi amor 😻"
+        ];
+
+        let messageIndex = 0;
+        let lastMessageTime = 0;
+
+        // Show romantic messages while music plays
+        backgroundMusic.addEventListener('timeupdate', function() {
+            if (!isPlaying) return;
+            
+            const currentTime = Math.floor(backgroundMusic.currentTime);
+            
+            // Change message every 8 seconds
+            if (currentTime > 0 && currentTime % 4 === 0 && currentTime !== lastMessageTime) {
+                lastMessageTime = currentTime;
+                
+                // Hide current message first
+                lyricsOverlay.classList.remove('show');
+                
+                // Show new message after a short delay
+                setTimeout(() => {
+                    lyricsOverlay.textContent = romanticMessages[messageIndex];
+                    lyricsOverlay.classList.add('show');
+                    messageIndex = (messageIndex + 1) % romanticMessages.length;
+                    
+                    // Hide message after 6 seconds
+                    setTimeout(() => {
+                        lyricsOverlay.classList.remove('show');
+                    }, 6000);
+                }, 500);
+            }
+        });
+
+        const catMemes = [
+            'https://media.discordapp.net/attachments/1355483951313190984/1464634568580534393/1769266480222.jpg?ex=6987fafc&is=6986a97c&hm=cd14ed0dc721ec2d43dc08913ffc24310fc1121312636856169f8fa5a327eb42&=&format=webp&width=614&height=810',
+            'https://media.discordapp.net/attachments/1355483951313190984/1464634569377452176/1769266480239.jpg?ex=6987fafc&is=6986a97c&hm=1584d78b36e2e934f59595d9f5d96c9268d4231368ab9257ce838ceb27898e2d&=&format=webp&width=789&height=793',
+            'https://media.discordapp.net/attachments/1355483951313190984/1464634570333749248/1769266480259.jpg?ex=6987fafd&is=6986a97d&hm=5aba140cfdc85eb774dc5e3971f967e0e132ad561cda68af89bd7879986dc87e&=&format=webp&width=696&height=810'
+        ];
+
+        const messages = [
+            "Will you be my Valentine? 🌹",
+            "Pretty please? 🥺",
+            "Are you sure? I got you flowers!🌹",
+            "I'll give you all my love! 🍬",
+            "Come on, you know you want to! 😊",
+            "Ikaw ang bunging bunging ko diba? ",
+            "Mahal na Mahal moko?",
+            "Final answer? 💝"
+        ];
+
+        // Yes button gets bigger with each click
+        yesBtn.addEventListener('click', function() {
+            yesClickCount++;
+            yesBtnScale += 0.3;
+            yesBtn.style.transform = `scale(${yesBtnScale})`;
+            
+            if (yesClickCount < messages.length) {
+                question.textContent = messages[yesClickCount];
+                catMeme.src = catMemes[yesClickCount % catMemes.length];
+            } else {
+                // Final success!
+                document.body.innerHTML = `
+                    <div style="text-align: center; color: white; font-size: 3em; padding: 50px;">
+                        <h1 style="font-size: 2em; margin-bottom: 30px;">🎉 YAY! 🎉</h1>
+                        <p style="font-size: 1.2em;">I knew you'd say yes! 💕</p>
+                        <img src="https://cdn.discordapp.com/attachments/1355483951313190984/1464953799004127324/cute.gif?ex=6987d2cb&is=6986814b&hm=1b15e832cded642a9334756f8e0a865cdb35985caf6261a6f2e7c5e4c9c6b997&" style="width: 300px; border-radius: 20px; margin: 30px auto; display: block;">
+                        <p style="font-size: 0.8em; margin-top: 30px;">Can't wait for our Valentine's Day! 😻</p>
+                    </div>
+                `;
+                
+                // Keep the music playing
+                document.body.appendChild(backgroundMusic);
+                
+                createHearts();
+            }
+        });
+
+        // No button evades mouse
+        noBtn.addEventListener('mouseover', function() {
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            const maxX = containerRect.width - noBtn.offsetWidth - 40;
+            const maxY = containerRect.height - noBtn.offsetHeight - 40;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'hearts';
+                    heart.textContent = '💖';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(heart);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
